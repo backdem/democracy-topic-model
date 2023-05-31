@@ -33,7 +33,7 @@ years = pd.Series(all_countries_data['year'])
 years = set(list(years.dropna()))
 
 # load topic seeds
-dict_file = '../data/dict.json'
+dict_file = '../data/dict_2.json'
 dictionary = None
 with open(dict_file, 'r') as file:
     dictionary = json.load(file)
