@@ -1,6 +1,11 @@
 import pandas as pd
 import json
 import nltk
+import spacy
+
+# Load the English language model
+nlp = spacy.load('en_core_web_sm')
+
 nltk.download('averaged_perceptron_tagger')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')
@@ -37,6 +42,10 @@ def get_country_data(data_file, countries, years):
     country_data = country_data.reset_index(drop=True)
     return country_data
 
+def add_pos_column(country_data):
+    country_data["sentence_pos"] = country_data["sentence"].apply(lambda x: len(x.split()))
+
+    return country_data
     
 def get_seed_lists(data_file, ngram_size, exact=False):
     dictionary = None
