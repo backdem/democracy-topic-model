@@ -1,6 +1,6 @@
-{
+[
   {
-  "name":"electoral",
+    "name": "electoral",
     "words": [
       "elections",
       "voting",
@@ -10,28 +10,29 @@
       "candidate selection",
       "election monitoring",
       "voter turnout",
-      "electoral fraud",
-      "electoral integrity"
+      "electoral integrity",
+      "proportional representation"
     ]
   },
   {
     "name": "participatory",
-      "words": [
-        "citizen participation",
-        "public engagement",
-        "civic involvement",
-        "grassroots movements",
-        "participatory budgeting",
-        "consultation processes",
-        "town hall meetings",
-        "citizen forums",
-        "deliberative democracy",
-        "community engagement"
+    "words": [
+      "citizen participation",
+      "public engagement",
+      "civic involvement",
+      "grassroots movements",
+      "participatory budgeting",
+      "consultation processes",
+      "town hall meetings",
+      "citizen forums",
+      "deliberative democracy",
+      "community engagement",
+      "civil society"
     ]
   },
   {
     "name": "liberal",
-      "words": [
+    "words": [
       "rule of law",
       "individual rights",
       "civil liberties",
@@ -41,12 +42,14 @@
       "judicial independence",
       "human rights",
       "constitutionalism",
-      "minority rights"
+      "minority rights",
+      "equal rights",
+      "social justice"
     ]
   },
-  { 
+  {
     "name": "corruption",
-      "words": [
+    "words": [
       "transparency",
       "accountability",
       "bribery",
@@ -56,8 +59,10 @@
       "whistleblower protection",
       "anti-corruption measures",
       "public procurement",
-      "ethics in public service"
+      "ethics in public service",
+      "institutional integrity",
+      "conflict of interest"
     ]
   }
-}
+]
 
