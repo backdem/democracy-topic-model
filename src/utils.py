@@ -68,25 +68,29 @@ def get_countries_data(csv_file):
     # cast sentence column to string
     all_countries_data['sentence'] = all_countries_data['sentence'].astype(str)
     all_countries_data['country'] = all_countries_data['country'].astype(str)
-    country_alt_names = {
-            "türkiye": "turkey",
-            "north-macedonia": "north_macedonia",
-            "bosnia-and-herzegovina": "bosnia-herzegovina",
-            "czech-republic": "czechia"
-            }
+    
+    # Done in generate_dataset in scrape_tools
+    #country_alt_names = {
+    #        "türkiye": "turkey",
+    #        "north_macedonia": "north-macedonia",
+    #        "bosnia-and-herzegovina": "bosnia-herzegovina",
+    #        "czech-republic": "czechia"
+    #        }
 
     # fix alternate name for countries
-    for name in list(country_alt_names.keys()):
-        all_countries_data["country"] = all_countries_data["country"]\
-                .replace(name, country_alt_names[name])
+    #for name in list(country_alt_names.keys()):
+    #    all_countries_data["country"] = all_countries_data["country"]\
+    #            .replace(name, country_alt_names[name])
 
     countries = pd.Series((all_countries_data['country']))
     # remove nan from dataset
     countries = set(list(countries.dropna()))
     years = pd.Series(all_countries_data['year'])
+    sources = pd.Series(all_countries_data['source'])
     # remove nan from dataset
     years = set(list(years.dropna()))
+    sources = set(list(sources.dropna()))
     
-    return (countries, years, pd.DataFrame(all_countries_data))
+    return (countries, years, pd.DataFrame(all_countries_data), sources)
 
 
