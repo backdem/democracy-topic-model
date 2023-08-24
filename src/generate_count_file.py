@@ -179,9 +179,18 @@ def process_corpus(df, dict_file):
         counts = count_stems(stems, words, stemmed_dictionary)
         for word in counts.keys():
             values = counts[word]
-            coumpund_key = (word, country, year, source)
-            hash_map[coumpund_key] = hash_map.get(coumpund_key, [0, values[1], values[2]])
-            hash_map[coumpund_key][0] += values[0]
+            dimension = values[2]
+            stem = values[1]
+            count = values[0]
+            # TODO problem lies here with word plural[ism|ity]. One is
+            # in the electoral whilst another is on the participatory. 
+            # The compound key needs to include the dimension 
+            #coumpund_key = (word, country, year, source)
+            #hash_map[coumpund_key] = hash_map.get(coumpund_key, [0, values[1], values[2]])
+            #hash_map[coumpund_key][0] += values[0]
+            coumpund_key = (word, country, year, source, dimension)
+            hash_map[coumpund_key] = hash_map.get(coumpund_key, [0, stem])
+            hash_map[coumpund_key][0] += count
 
         # process n ngrams
         for n in range(2, 5):
@@ -190,16 +199,17 @@ def process_corpus(df, dict_file):
             counts = count_ngrams(ngrams, dictionary)
             for word in counts.keys():
                 values = counts[word]
-                coumpund_key = (word, country, year, source)
-                hash_map[coumpund_key] = hash_map.get(coumpund_key, [0, values[1], values[2]])
-                hash_map[coumpund_key][0] += values[0]
+                dimension = values[2]
+                count = values[0]
+                coumpund_key = (word, country, year, source, dimension)
+                hash_map[coumpund_key] = hash_map.get(coumpund_key, [0, values[1]])
+                hash_map[coumpund_key][0] += count
 
     print("building DataFrame")
     for key in hash_map.keys():
         values = hash_map[key]
-        word, country, year, source = key
+        word, country, year, source, dimension = key
         count = values[0]
-        dimension = values[2]
         results["dictionary"].append(word)
         results["country"].append(country)
         results["year"].append(year)
