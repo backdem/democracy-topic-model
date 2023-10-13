@@ -1,3 +1,6 @@
+# Mac hidden folder
+*.DS_Store
+
 # datasets
 *.csv
 *.json

@@ -1,0 +1,4 @@
+bertopic==0.14.1
+matplotlib==3.5.2
+pandas==1.4.4
+seaborn==0.11.2
