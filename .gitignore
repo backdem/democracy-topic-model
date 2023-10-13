@@ -1,3 +1,8 @@
+# datasets
+*.csv
+*.json
+
+# images
 images/
 
 # configurations
