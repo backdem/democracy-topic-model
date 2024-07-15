@@ -13,13 +13,12 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 
+global_dict = None
 # Download stopwords and initialize stemmer
 nltk.download('stopwords')
 nltk.download('punkt')
 stopwords = set(stopwords.words('english'))
 stemmer = PorterStemmer()
-
-global_dict = None
 
 def get_stemmed_tokens(data_list):
     all_stems = []
@@ -128,6 +127,9 @@ def load_json_dict(dict_file):
     
 
 def get_topic_name(n, dictionary=global_dict):
+    if (not dictionary): 
+        dictionary=global_dict
+        
     return dictionary[n-1]["name"]
 
 
@@ -140,6 +142,7 @@ def count_stems(stems, words, stemmed_dictionary):
     for i, stem in enumerate(stems):
         for j, dimension in enumerate(stemmed_dictionary):
             if stem in dimension:
+                #print(f"stem {stem} j {j} dimension {dimension}")
                 counts[words[i]] = counts.get(words[i], [0, stem,  get_topic_name(j+1)])
                 counts[words[i]][0] += 1
     return counts
@@ -231,8 +234,9 @@ def get_keyword_extraction_counts(corpus_file, dictionary_file, regenerate=False
     
     json_dict = load_json_dict(dictionary_file)
     # Set global variable needed by function get_topic_name
+    global global_dict
     global_dict = json_dict
     countries, years, all_countries_data, sources = utils.get_countries_data(corpus_file)
-    df = process_corpus(all_countries_data, dict_file)    
+    df = process_corpus(all_countries_data, dictionary_file)    
     df.to_csv("non_aggregated_counts.csv", index=False)    
     return df
