@@ -11,6 +11,7 @@ images/
 # configurations
 *.ini 
 *.cfg 
+*.key
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
