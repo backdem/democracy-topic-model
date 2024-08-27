@@ -6,6 +6,9 @@ After encountering challenges in aligning the topics found by the BERTopic model
 
 ### Text Preprocessing
 
+Corpus has been prepared by scraping various online sources. The corpus dataset is found in this [repository](https://github.com/backdem/democracy-datasets).
+Each entry in the corpus included the country, year, source, and the sentence itself.
+Additionally, the script calculated the length of each sentence in words, which was used as a feature during the topic modeling process.
 Before extracting topics, the text corpus underwent extensive preprocessing to standardize the content. This involved several steps:
 
 - **Tokenization**: The text was split into individual tokens (words) using the `nltk` library.
@@ -14,7 +17,9 @@ Before extracting topics, the text corpus underwent extensive preprocessing to s
 
 ### Keyword Matching and Counting
 
-The core of the keyword-based extraction method involved matching the processed tokens against a predefined dictionary. This dictionary, created by domain experts, contained terms categorized under various topics or dimensions relevant to the research. The matching process differed for unigrams compared to other n-grams:
+The core of the keyword-based extraction method involved matching the processed tokens against a predefined dictionary.
+This [dictionary](https://github.com/backdem/democracy-datasets/blob/main/dimension_dictionary.json), created by domain experts,
+contained terms categorized under various topics or dimensions relevant to the research. The matching process differed for unigrams compared to other n-grams:
 
 - **Unigram Matching**: For unigrams, both the dictionary terms and the corpus were stemmed using the Porter Stemmer. This ensured that variations of a word (e.g., "democracy" and "democratic") were correctly identified and matched. After stemming, the occurrences of each stemmed unigram were counted across the corpus.
 - **N-gram Matching (Bigrams and Trigrams)**: For bigrams and trigrams, exact matches were used instead of stemming. The corpus was scanned for precise phrases as listed in the dictionary. This approach was critical for capturing the meaning of multi-word expressions, where the context provided by the phrase was essential for topic identification.
